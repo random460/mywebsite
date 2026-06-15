@@ -1,0 +1,190 @@
+
+
+
+  !!..............scripted by Ananya Shubham Gupta............!!
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Message ❤️</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+body{
+background:linear-gradient(-45deg,#ff4e8a,#ff7eb3,#ff758c,#ff9a9e);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+overflow:hidden;
+color:white;
+}
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+.page{
+display:none;
+height:100vh;
+padding:30px;
+text-align:center;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+animation:fade 1s;
+}
+.active{
+display:flex;
+}
+@keyframes fade{
+from{opacity:0;transform:scale(.9);}
+to{opacity:1;transform:scale(1);}
+}
+h1{
+font-size:2.3rem;
+margin-bottom:20px;
+text-shadow:0 0 15px white;
+}
+#typewriter{
+font-size:1.3rem;
+max-width:700px;
+line-height:1.8;
+min-height:160px;
+}
+button{
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin-top:30px;
+background:white;
+color:#ff2d75;
+font-weight:bold;
+transition:.3s;
+}
+button:hover{
+transform:scale(1.1);
+}
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 7s linear infinite;
+}
+@keyframes float{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+</style>
+</head>
+<body>
+<!-- PAGE 1 -->
+<div class="page active">
+<h1>❤️ Hey You ❤️</h1>
+<div id="typewriter"></div>
+<button onclick="nextPage()">Next ➜</button>
+</div>
+<!-- PAGE 2 -->
+<div class="page">
+<h1>🌸 A Small Story</h1>
+<div id="typewriter"></div>
+<button onclick="nextPage()">Continue ❤️</button>
+</div>
+<!-- PAGE 3 -->
+<div class="page">
+<h1>💌 Truth</h1>
+<div id="typewriter"></div>
+<button onclick="nextPage()">Read More ✨</button>
+</div>
+<!-- PAGE 4 -->
+<div class="page">
+<h1>🥰 Something Special</h1>
+<div id="typewriter"></div>
+<button onclick="nextPage()">Next 🌹</button>
+</div>
+<!-- PAGE 5 -->
+<div class="page">
+<h1>❤️ My Feelings ❤️</h1>
+<div id="typewriter"></div>
+<button onclick="nextPage()">Final Page 💖</button>
+</div>
+<!-- PAGE 6 -->
+<div class="page">
+<h1>🌹 One Last Question 🌹</h1>
+<div id="typewriter"></div>
+<button onclick="showLove()">Click Here ❤️</button>
+</div>
+<script>
+const texts = [
+"Ek chhoti si kahani hai... Jo shayad tumse shuru hoti hai. Aaj main tumhe kuch dil ki baatein batana chahta hoon... 💖",
+"Pata nahi kab tum meri life ka sabse khoobsurat hissa ban gayi. Tumhari smile dekhkar mera din ban jata hai... 🌸",
+"Jab bhi phone mein notification aata hai, dil bas yehi chahta hai ki wo tumhara message ho... 💌",
+"Tum sirf ek person nahi ho... Tum meri favourite smile, favourite thought aur favourite feeling ho... 🥰",
+"Main shayad perfect nahi hoon, lekin meri feelings tumhare liye bilkul sachchi hain. Har din tum aur bhi special lagti ho... ❤️",
+"Ab bas ek sawaal hai... Kya tum meri zindagi ka hissa banogi? Kya tum mere saath ek khoobsurat kahani likhna chahogi? 🌹"
+];
+let currentPage = 0;
+function typeWriter(text, element){
+element.innerHTML="";
+let i=0;
+let timer=setInterval(()=>{
+element.innerHTML += text.charAt(i);
+i++;
+if(i>=text.length){
+clearInterval(timer);
+}
+},40);
+}
+function loadPage(index){
+document.querySelectorAll("#typewriter").forEach(e=>e.innerHTML="");
+let pages=document.querySelectorAll(".page");
+pages.forEach(p=>p.classList.remove("active"));
+pages[index].classList.add("active");
+typeWriter(texts[index], pages[index].querySelector("#typewriter"));
+}
+function nextPage(){
+if(currentPage < 5){
+currentPage++;
+loadPage(currentPage);
+}
+}
+function showLove(){
+document.body.innerHTML=`
+<div style="height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;color:white;padding:20px;">
+<h1 style="font-size:3rem;">💍 Will You Be Mine Forever? 💍</h1>
+<p style="font-size:1.5rem;margin-top:20px;">
+I Love You So Much ❤️<br><br>
+Tum meri favourite person ho,<br>
+aur main tumhare saath har khushi share karna chahta hoon... 🥰
+</p>
+</div>
+`;
+}
+loadPage(0);
+function createHeart(){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{
+heart.remove();
+},7000);
+}
+setInterval(createHeart,300);
+</script>
+</body>
+</html>
